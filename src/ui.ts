@@ -1,9 +1,12 @@
 //import { shopAnim } from './game'
 
 import { WearableData, Wearable } from './wearables'
-import * as marketplace from '../node_modules/decentraland-crypto-utils/marketplace/index'
 
-import { splitTextIntoLines, roundNumber } from './helperFunctions'
+import * as crypto from '../node_modules/@dcl/crypto-utils/index'
+import * as mana from '../node_modules/@dcl/crypto-utils/mana/index'
+
+import { roundNumber } from './helperFunctions'
+import { mainnet } from '../node_modules/@dcl/crypto-utils/utils/contract'
 export const screenSpaceUI = new UICanvas()
 screenSpaceUI.visible = true
 
@@ -319,11 +322,9 @@ export async function openWearableUI(
   gender.color = Color4.Black()
   gender.font = SFFont
 
-  //const permissions = await marketplace.isAuthorizedAll()
-  //TODO just check wearable contract
+  const permissions = await crypto.marketplace.isAuthorizedAndHasBalance('1000')
 
-  if (true) {
-    //permissions.buying.mana.authorized == true) {
+  if (permissions == true) {
     showBuyUISection(wBackground, wearableData)
   } else {
     // MISSING PERMISSIONS
@@ -368,7 +369,7 @@ export async function showBuyUISection(
   button.height = 44
   button.positionY = 461 / 2 - 395 - 20 + 9
   button.sourceLeft = 1
-  button.sourceTop = 138
+  button.sourceTop = 142
   button.sourceWidth = 322
   button.sourceHeight = 44
 
@@ -390,21 +391,30 @@ export async function showBuyUISection(
   price.color = Color4.White()
   price.font = SFFont
 
-  let balance = 100000 //await getBalance()     TODO, get real balance
+  let balance = await mana.myBalance()
 
   log('player balance: ', balance)
 
-  if (balance > formattedPrice) {
+  if (+balance > wearableData.searchOrderPrice) {
     price.value = formattedPrice.toString()
 
     button.sourceTop = 112 + 30
     button.sourceWidth = 322
     button.sourceHeight = 44
     button.onClick = new OnClick(async () => {
-      await marketplace.createOrder(
+      log(
+        'CONTRACT: ',
+        wearableData.contractAddress,
+        ' ID: ',
+        Number(wearableData.tokenId),
+        ' PRICE: ',
+        formattedPrice
+      )
+
+      await crypto.marketplace.executeOrder(
         wearableData.contractAddress,
         Number(wearableData.tokenId),
-        wearableData.searchOrderPrice
+        formattedPrice
       )
 
       closeUI()
@@ -486,6 +496,7 @@ export function showDisclaimerNoPermission(background: UIImage) {
   allowButton.onClick = new OnClick(async () => {
     //await approveContract()
     // TODO approve contract
+    crypto.currency.setApproval(mainnet.MANAToken, mainnet.Marketplace)
 
     let loading = new UIImage(disclaimerBG, UIElements)
     loading.visible = true
@@ -555,8 +566,12 @@ export class CheckPermissionSystem {
 
     if (this.timer < 0) {
       this.timer = this.updateInterval
-      if (true) {
-        //await marketplace.isAuthorizedAll()) {
+      if (
+        await crypto.marketplace.isAuthorizedAndHasBalance(
+          this.wearableData.searchOrderPrice.toString()
+        )
+      ) {
+        //marketplace.isAuthorizedAll()) {
         // TODO: check only wearable contract
         this.permission = true
         this.timer = this.updateInterval

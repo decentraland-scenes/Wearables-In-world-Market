@@ -11,8 +11,11 @@
     "ecs:install-next": "npm install --save-dev decentraland-ecs@next"
   },
   "devDependencies": {
-    "decentraland-crypto-utils": "git+https://github.com/HPrivakos/decentraland-crypto-utils.git",
-    "decentraland-ecs": "^6.4.10-20200812191808.commit-5a18cad",
+    "decentraland-ecs": "^6.4.11-20200825203944.commit-fcfbfbe",
     "decentraland-ecs-utils": "^1.1.4"
+  },
+  "dependencies": {
+    "@dcl/crypto-utils": "^1.0.10",
+    "@dcl/ui-utils": "^1.0.0"
   }
 }
