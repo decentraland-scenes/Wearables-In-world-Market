@@ -23,7 +23,7 @@ export const openDialogSound = new Entity()
 openDialogSound.addComponent(new Transform())
 // This seems to work even when the player moves as oppose to getting the transform from the item
 // as the items transform might not be matching their position visuallly
-openDialogSound.getComponent(Transform).position = Camera.instance.position
+openDialogSound.setParent(Attachable.PLAYER)
 let uiForward = new AudioClip('sounds/navigationForward.mp3')
 openDialogSound.addComponent(new AudioSource(uiForward))
 engine.addEntity(openDialogSound)
@@ -31,7 +31,7 @@ engine.addEntity(openDialogSound)
 // close dialog
 export const closeDialogSound = new Entity()
 closeDialogSound.addComponent(new Transform())
-closeDialogSound.getComponent(Transform).position = Camera.instance.position
+closeDialogSound.setParent(Attachable.PLAYER)
 let uiBackward = new AudioClip('sounds/navigationBackward.mp3')
 closeDialogSound.addComponent(new AudioSource(uiBackward))
 engine.addEntity(closeDialogSound)
