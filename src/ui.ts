@@ -23,18 +23,18 @@ export const openDialogSound = new Entity()
 openDialogSound.addComponent(new Transform())
 // This seems to work even when the player moves as oppose to getting the transform from the item
 // as the items transform might not be matching their position visuallly
-openDialogSound.setParent(Attachable.PLAYER)
 let uiForward = new AudioClip('sounds/navigationForward.mp3')
 openDialogSound.addComponent(new AudioSource(uiForward))
 engine.addEntity(openDialogSound)
+openDialogSound.setParent(Attachable.PLAYER)
 
 // close dialog
 export const closeDialogSound = new Entity()
 closeDialogSound.addComponent(new Transform())
-closeDialogSound.setParent(Attachable.PLAYER)
 let uiBackward = new AudioClip('sounds/navigationBackward.mp3')
 closeDialogSound.addComponent(new AudioSource(uiBackward))
 engine.addEntity(closeDialogSound)
+closeDialogSound.setParent(Attachable.PLAYER)
 
 let SFFont = new Font(Fonts.SanFrancisco)
 let SFHeavyFont = new Font(Fonts.SanFrancisco_Heavy)
