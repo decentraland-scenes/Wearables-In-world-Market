@@ -26,7 +26,7 @@ openDialogSound.addComponent(new Transform())
 let uiForward = new AudioClip('sounds/navigationForward.mp3')
 openDialogSound.addComponent(new AudioSource(uiForward))
 engine.addEntity(openDialogSound)
-openDialogSound.setParent(Attachable.PLAYER)
+openDialogSound.setParent(Attachable.AVATAR)
 
 // close dialog
 export const closeDialogSound = new Entity()
@@ -34,7 +34,7 @@ closeDialogSound.addComponent(new Transform())
 let uiBackward = new AudioClip('sounds/navigationBackward.mp3')
 closeDialogSound.addComponent(new AudioSource(uiBackward))
 engine.addEntity(closeDialogSound)
-closeDialogSound.setParent(Attachable.PLAYER)
+closeDialogSound.setParent(Attachable.AVATAR)
 
 let SFFont = new Font(Fonts.SanFrancisco)
 let SFHeavyFont = new Font(Fonts.SanFrancisco_Heavy)
