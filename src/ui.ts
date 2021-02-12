@@ -2,11 +2,10 @@
 
 import { WearableData, Wearable } from './wearables'
 
-import * as crypto from '../node_modules/@dcl/crypto-utils/index'
-import * as mana from '../node_modules/@dcl/crypto-utils/mana/index'
+import * as crypto from '@dcl/crypto-scene-utils'
 
 import { roundNumber } from './helperFunctions'
-import { mainnet } from '../node_modules/@dcl/crypto-utils/utils/contract'
+
 export const screenSpaceUI = new UICanvas()
 screenSpaceUI.visible = true
 
@@ -391,7 +390,7 @@ export async function showBuyUISection(
   price.color = Color4.White()
   price.font = SFFont
 
-  let balance = await mana.myBalance()
+  let balance = await crypto.mana.myBalance()
 
   log('player balance: ', balance)
 
@@ -496,7 +495,10 @@ export function showDisclaimerNoPermission(background: UIImage) {
   allowButton.onClick = new OnClick(async () => {
     //await approveContract()
     // TODO approve contract
-    crypto.currency.setApproval(mainnet.MANAToken, mainnet.Marketplace)
+    crypto.currency.setApproval(
+      crypto.contract.mainnet.MANAToken,
+      crypto.contract.mainnet.Marketplace
+    )
 
     let loading = new UIImage(disclaimerBG, UIElements)
     loading.visible = true

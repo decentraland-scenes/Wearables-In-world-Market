@@ -1,9 +1,9 @@
 import { addWearables } from './wearables'
 
-Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
-  log(`pos: `, Camera.instance.position)
-  log(`rot: `, Camera.instance.rotation)
-})
+// Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
+//   log(`pos: `, Camera.instance.position)
+//   log(`rot: `, Camera.instance.rotation)
+// })
 
 addWearables()
 
