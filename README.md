@@ -1,8 +1,10 @@
 # Wearables Marketplace
 
-A simple scene that uses the `decentraland-crypto-utils` library and the Marketplace API mount an in-world wearables shop, leveraging from items published in the Decentraland Marketplace.
+A simple scene that uses the `decentraland-crypto-utils` library and the Marketplace API mount an in-world wearables shop for wearables that are on Layer 1 Ethereum, leveraging from items published in the Decentraland Marketplace.
 
 <img src="screenshot/screenshot.png" width="250">
+
+> Note: This example code only works for wearables on L1 of Ethereum. It doesn't work for wearables on L2. For that, refer to the [Wearables Store](https://github.com/decentraland-scenes/wearables-store) example scene.
 
 This scene shows you:
 
