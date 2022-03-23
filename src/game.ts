@@ -12,7 +12,7 @@ engine.addEntity(_scene)
 const transform = new Transform({
   position: new Vector3(0, 0, 0),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: new Vector3(1, 1, 1),
+  scale: new Vector3(1, 1, 1)
 })
 _scene.addComponentOrReplace(transform)
 
@@ -27,7 +27,7 @@ entity.addComponentOrReplace(gltfShape)
 const transform2 = new Transform({
   position: new Vector3(8, 0, 8),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: new Vector3(1, 1, 1),
+  scale: new Vector3(1, 1, 1)
 })
 entity.addComponentOrReplace(transform2)
 
@@ -42,7 +42,7 @@ const transform3 = new Transform({
     8.429369557916289e-8,
     0.7071068286895752
   ),
-  scale: new Vector3(1.0000078678131104, 1, 1.0000078678131104),
+  scale: new Vector3(1.0000078678131104, 1, 1.0000078678131104)
 })
 stand.addComponentOrReplace(transform3)
 const gltfShape2 = new GLTFShape('models/stand.glb')
@@ -63,7 +63,7 @@ const transform4 = new Transform({
     8.429369557916289e-8,
     0.7071068286895752
   ),
-  scale: new Vector3(1.0000081062316895, 1, 1.0000081062316895),
+  scale: new Vector3(1.0000081062316895, 1, 1.0000081062316895)
 })
 stand2.addComponentOrReplace(transform4)
 
@@ -79,7 +79,7 @@ const transform5 = new Transform({
     8.429369557916289e-8,
     0.7071068286895752
   ),
-  scale: new Vector3(1.0000150203704834, 1, 1.0000150203704834),
+  scale: new Vector3(1.0000150203704834, 1, 1.0000150203704834)
 })
 stand3.addComponentOrReplace(transform5)
 
@@ -95,7 +95,7 @@ const transform6 = new Transform({
     8.429369557916289e-8,
     0.7071068286895752
   ),
-  scale: new Vector3(1.000014305114746, 1, 1.000014305114746),
+  scale: new Vector3(1.000014305114746, 1, 1.000014305114746)
 })
 stand4.addComponentOrReplace(transform6)
 
@@ -111,7 +111,7 @@ const transform7 = new Transform({
     8.429369557916289e-8,
     0.7071068286895752
   ),
-  scale: new Vector3(1.0000145435333252, 1, 1.0000145435333252),
+  scale: new Vector3(1.0000145435333252, 1, 1.0000145435333252)
 })
 stand5.addComponentOrReplace(transform7)
 
@@ -127,6 +127,6 @@ const transform8 = new Transform({
     8.429369557916289e-8,
     0.7071068286895752
   ),
-  scale: new Vector3(1.0000147819519043, 1, 1.0000147819519043),
+  scale: new Vector3(1.0000147819519043, 1, 1.0000147819519043)
 })
 stand6.addComponentOrReplace(transform8)

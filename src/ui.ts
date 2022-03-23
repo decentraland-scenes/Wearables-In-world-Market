@@ -22,7 +22,7 @@ export const openDialogSound = new Entity()
 openDialogSound.addComponent(new Transform())
 // This seems to work even when the player moves as oppose to getting the transform from the item
 // as the items transform might not be matching their position visuallly
-let uiForward = new AudioClip('sounds/navigationForward.mp3')
+const uiForward = new AudioClip('sounds/navigationForward.mp3')
 openDialogSound.addComponent(new AudioSource(uiForward))
 engine.addEntity(openDialogSound)
 openDialogSound.setParent(Attachable.AVATAR)
@@ -30,13 +30,13 @@ openDialogSound.setParent(Attachable.AVATAR)
 // close dialog
 export const closeDialogSound = new Entity()
 closeDialogSound.addComponent(new Transform())
-let uiBackward = new AudioClip('sounds/navigationBackward.mp3')
+const uiBackward = new AudioClip('sounds/navigationBackward.mp3')
 closeDialogSound.addComponent(new AudioSource(uiBackward))
 engine.addEntity(closeDialogSound)
 closeDialogSound.setParent(Attachable.AVATAR)
 
-let SFFont = new Font(Fonts.SanFrancisco)
-let SFHeavyFont = new Font(Fonts.SanFrancisco_Heavy)
+const SFFont = new Font(Fonts.SanFrancisco)
+const SFHeavyFont = new Font(Fonts.SanFrancisco_Heavy)
 
 const wearableBackground = new Texture('images/wearablesModal.png')
 const UIElements = new Texture('images/UIElements.png')
@@ -125,7 +125,7 @@ export async function openWearableUI(
 
   const wearableThumnail = new Texture(wearableData.image)
 
-  let backgroundOffset = -70
+  const backgroundOffset = -70
 
   wBackground = new UIImage(screenSpaceUI, wearableBackground)
   wBackground.name = 'wearablebackground'
@@ -185,7 +185,7 @@ export async function openWearableUI(
       break
   }
 
-  let closeIcon = new UIImage(wBackground, UIElements)
+  const closeIcon = new UIImage(wBackground, UIElements)
   closeIcon.name = 'closeIcon'
   closeIcon.visible = true
   closeIcon.positionY = 461 / 2 + 144
@@ -255,7 +255,7 @@ export async function openWearableUI(
   desc.color = Color4.Black()
   desc.font = SFFont
 
-  let shortenedOwner =
+  const shortenedOwner =
     wearableData.owner.address.slice(0, 5) +
     '...' +
     wearableData.owner.address.slice(wearableData.owner.address.length - 4)
@@ -299,10 +299,10 @@ export async function openWearableUI(
   category.font = SFFont
 
   let genderString: string
-  if (wearableData.wearable.bodyShapes.length == 2) {
+  if (wearableData.wearable.bodyShapes.length === 2) {
     genderString = 'Unisex'
   } else {
-    if (wearableData.wearable.bodyShapes[0] == 'BaseMale') {
+    if (wearableData.wearable.bodyShapes[0] === 'BaseMale') {
       genderString = 'Male'
     } else {
       genderString = 'Female'
@@ -323,7 +323,7 @@ export async function openWearableUI(
 
   const permissions = await crypto.marketplace.isAuthorizedAndHasBalance('1000')
 
-  if (permissions == true) {
+  if (permissions === true) {
     showBuyUISection(wBackground, wearableData)
   } else {
     // MISSING PERMISSIONS
@@ -372,7 +372,7 @@ export async function showBuyUISection(
   button.sourceWidth = 322
   button.sourceHeight = 44
 
-  let formattedPrice = roundNumber(
+  const formattedPrice = roundNumber(
     wearableData.searchOrderPrice / 1000000000000000000,
     4
   )
@@ -390,7 +390,7 @@ export async function showBuyUISection(
   price.color = Color4.White()
   price.font = SFFont
 
-  let balance = await crypto.mana.myBalance()
+  const balance = await crypto.mana.myBalance()
 
   log('player balance: ', balance)
 
@@ -500,7 +500,7 @@ export function showDisclaimerNoPermission(background: UIImage) {
       crypto.contract.mainnet.Marketplace
     )
 
-    let loading = new UIImage(disclaimerBG, UIElements)
+    const loading = new UIImage(disclaimerBG, UIElements)
     loading.visible = true
     loading.sourceTop = 0
     loading.sourceLeft = 52
@@ -563,7 +563,7 @@ export class CheckPermissionSystem {
   background: UIImage
   wearableData: WearableData
   async update(dt: number) {
-    if (this.permission == true) return
+    if (this.permission === true) return
     this.timer -= dt
 
     if (this.timer < 0) {
