@@ -324,7 +324,7 @@ export async function openWearableUI(
   const permissions = await crypto.marketplace.isAuthorizedAndHasBalance('1000')
 
   if (permissions === true) {
-    showBuyUISection(wBackground, wearableData)
+    showBuyUISection(wBackground, wearableData).catch((error) => log(error))
   } else {
     // MISSING PERMISSIONS
     showDisclaimerNoPermission(wBackground)
@@ -498,7 +498,7 @@ export function showDisclaimerNoPermission(background: UIImage) {
     crypto.currency.setApproval(
       crypto.contract.mainnet.MANAToken,
       crypto.contract.mainnet.Marketplace
-    )
+    ).catch((error) => log(error))
 
     const loading = new UIImage(disclaimerBG, UIElements)
     loading.visible = true
@@ -580,7 +580,7 @@ export class CheckPermissionSystem {
         disclaimerBG.visible = false
         disclaimerBG.isPointerBlocker = false
 
-        showBuyUISection(this.background, this.wearableData)
+        showBuyUISection(this.background, this.wearableData).catch((error) => log(error))
 
         log('Approve transaction done!!! ')
         engine.removeSystem(this)
